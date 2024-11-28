@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 //string connectionString = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5;User ID=sa;" +
 //    "Password=sasa@123;";
 //SqlConnection connection = new SqlConnection(connectionString);
-////connection.Open();
+//connection.Open();
 //Console.WriteLine("connection Open");
 
 
@@ -51,33 +51,52 @@ using System.Data.SqlClient;
 //    Console.WriteLine(dr["DeleteFlag"]);
 //}
 
-string connectionString2 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
-SqlConnection sqlConnection2 = new SqlConnection(connectionString2);
+//string connectionString2 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
+//SqlConnection sqlConnection2 = new SqlConnection(connectionString2);
+
+//Console.WriteLine("Blog Title: ");
+//string title = Console.ReadLine();
+//Console.WriteLine("Blog Author: ");
+//string author = Console.ReadLine();
+//Console.WriteLine("Blog Content");
+//string content = Console.ReadLine();
+
+//sqlConnection2.Open();
+
+//string query2 = @"INSERT INTO [dbo].[Tbl_Blog]
+//           ([BlogTitle]
+//           ,[BlogAuthor]
+//           ,[BlogContent]
+//           ,[DeleteFlag])
+//     VALUES
+//           (@BlogTitle
+//           ,@BlogAuthor
+//           ,@BlogContent
+//           ,0)";
+
+//SqlCommand cmd2 = new SqlCommand(query2, sqlConnection2);
+//cmd2.Parameters.AddWithValue("@BlogTitle", title);
+//cmd2.Parameters.AddWithValue("@BlogAuthor", author);
+//cmd2.Parameters.AddWithValue("@BlogContent", content);
+
+//var result = cmd2.ExecuteNonQuery();
+//Console.WriteLine(result > 0 ? "Insert Successful" : "Insert Fail");
+
+string connectionString3 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
+SqlConnection sqlConnection3 = new SqlConnection(connectionString3);
 
 Console.WriteLine("Blog Title: ");
 string title = Console.ReadLine();
-Console.WriteLine("Blog Author: ");
-string author = Console.ReadLine();
-Console.WriteLine("Blog Content");
-string content = Console.ReadLine();
 
-sqlConnection2.Open();
+string query3 = @"DELETE FROM [dbo].[Tbl_Blog]
+      WHERE BlogTitle = @BlogTitle";
 
-string query2 = @"INSERT INTO [dbo].[Tbl_Blog]
-           ([BlogTitle]
-           ,[BlogAuthor]
-           ,[BlogContent]
-           ,[DeleteFlag])
-     VALUES
-           (@BlogTitle
-           ,@BlogAuthor
-           ,@BlogContent
-           ,0)";
 
-SqlCommand cmd2 = new SqlCommand(query2, sqlConnection2);
-cmd2.Parameters.AddWithValue("@BlogTitle", title);
-cmd2.Parameters.AddWithValue("@BlogAuthor", author);
-cmd2.Parameters.AddWithValue("@BlogContent", content);
+sqlConnection3.Open();
+SqlCommand cmd3 = new SqlCommand(query3, sqlConnection3);
+cmd3.Parameters.AddWithValue("@BlogTitle", title);
 
-var result = cmd2.ExecuteNonQuery();
-Console.WriteLine(result > 0 ? "Insert Successful" : "Insert Fail");
+int result = cmd3.ExecuteNonQuery();
+sqlConnection3.Close();
+Console.WriteLine(result > 0 ? "Delete Successful" : "Delete Fail");
+
