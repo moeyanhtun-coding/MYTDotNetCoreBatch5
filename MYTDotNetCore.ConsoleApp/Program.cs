@@ -82,21 +82,61 @@ using System.Data.SqlClient;
 //var result = cmd2.ExecuteNonQuery();
 //Console.WriteLine(result > 0 ? "Insert Successful" : "Insert Fail");
 
-string connectionString3 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
-SqlConnection sqlConnection3 = new SqlConnection(connectionString3);
+//string connectionString3 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
+//SqlConnection sqlConnection3 = new SqlConnection(connectionString3);
 
-Console.WriteLine("Blog Title: ");
+//Console.WriteLine("Blog Title: ");
+//string title = Console.ReadLine();
+
+//string query3 = @"DELETE FROM [dbo].[Tbl_Blog]
+//      WHERE BlogTitle = @BlogTitle";
+
+
+//sqlConnection3.Open();
+//SqlCommand cmd3 = new SqlCommand(query3, sqlConnection3);
+//cmd3.Parameters.AddWithValue("@BlogTitle", title);
+
+//int result = cmd3.ExecuteNonQuery();
+//sqlConnection3.Close();
+//Console.WriteLine(result > 0 ? "Delete Successful" : "Delete Fail");
+
+string connectionString4 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
+SqlConnection sqlConnection4 = new SqlConnection(connectionString4);
+
+Console.WriteLine("Enter Title: ");
 string title = Console.ReadLine();
+sqlConnection4.Open();
+string query4 = @"SELECT [BlogId]
+      ,[BlogTitle]
+      ,[BlogAuthor]
+      ,[BlogContent]
+      ,[DeleteFlag]
+  FROM [dbo].[Tbl_Blog]
+  WHERE BlogTitle = @BlogTitle;";
+SqlCommand cmd = new SqlCommand(query4, sqlConnection4);
+cmd.Parameters.AddWithValue("@BlogTitle", title);
 
-string query3 = @"DELETE FROM [dbo].[Tbl_Blog]
-      WHERE BlogTitle = @BlogTitle";
+SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+//SqlDataReader reader = cmd.ExecuteReader();
+//while (reader.Read())
+//{
+//    Console.WriteLine("Title: " + reader["BlogTitle"]);
+//    Console.WriteLine("Author: " + reader["BlogAuthor"]);
+//    Console.WriteLine("Content: " + reader["BlogContent"]);
+//}
+sqlConnection4.Close();
+DataTable dt = new DataTable();
+adapter.Fill(dt);
+
+foreach (DataRow dr in dt.Rows)
+{
+    Console.WriteLine(dr["BlogTitle"]);
+    Console.WriteLine(dr["BlogAuthor"]);
+    Console.WriteLine(dr["BlogContent"]);
+}
 
 
-sqlConnection3.Open();
-SqlCommand cmd3 = new SqlCommand(query3, sqlConnection3);
-cmd3.Parameters.AddWithValue("@BlogTitle", title);
 
-int result = cmd3.ExecuteNonQuery();
-sqlConnection3.Close();
-Console.WriteLine(result > 0 ? "Delete Successful" : "Delete Fail");
+
+
 
