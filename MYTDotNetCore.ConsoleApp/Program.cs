@@ -2,6 +2,7 @@
 
 using System.Data;
 using System.Data.SqlClient;
+using MYTDotNetCore.ConsoleApp;
 
 //Console.WriteLine("Hello, World!");
 //string connectionString = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5;User ID=sa;" +
@@ -100,23 +101,23 @@ using System.Data.SqlClient;
 //sqlConnection3.Close();
 //Console.WriteLine(result > 0 ? "Delete Successful" : "Delete Fail");
 
-string connectionString4 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
-SqlConnection sqlConnection4 = new SqlConnection(connectionString4);
+//string connectionString4 = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5; User ID =sa; Password = sasa@123;";
+//SqlConnection sqlConnection4 = new SqlConnection(connectionString4);
 
-Console.WriteLine("Enter Title: ");
-string title = Console.ReadLine();
-sqlConnection4.Open();
-string query4 = @"SELECT [BlogId]
-      ,[BlogTitle]
-      ,[BlogAuthor]
-      ,[BlogContent]
-      ,[DeleteFlag]
-  FROM [dbo].[Tbl_Blog]
-  WHERE BlogTitle = @BlogTitle;";
-SqlCommand cmd = new SqlCommand(query4, sqlConnection4);
-cmd.Parameters.AddWithValue("@BlogTitle", title);
+//Console.WriteLine("Enter Title: ");
+//string title = Console.ReadLine();
+//sqlConnection4.Open();
+//string query4 = @"SELECT [BlogId]
+//      ,[BlogTitle]
+//      ,[BlogAuthor]
+//      ,[BlogContent]
+//      ,[DeleteFlag]
+//  FROM [dbo].[Tbl_Blog]
+//  WHERE BlogTitle = @BlogTitle;";
+//SqlCommand cmd = new SqlCommand(query4, sqlConnection4);
+//cmd.Parameters.AddWithValue("@BlogTitle", title);
 
-SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+//SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 //SqlDataReader reader = cmd.ExecuteReader();
 //while (reader.Read())
 //{
@@ -124,18 +125,22 @@ SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 //    Console.WriteLine("Author: " + reader["BlogAuthor"]);
 //    Console.WriteLine("Content: " + reader["BlogContent"]);
 //}
-sqlConnection4.Close();
-DataTable dt = new DataTable();
-adapter.Fill(dt);
+//sqlConnection4.Close();
+//DataTable dt = new DataTable();
+//adapter.Fill(dt);
 
-foreach (DataRow dr in dt.Rows)
-{
-    Console.WriteLine(dr["BlogTitle"]);
-    Console.WriteLine(dr["BlogAuthor"]);
-    Console.WriteLine(dr["BlogContent"]);
-}
+//foreach (DataRow dr in dt.Rows)
+//{
+//    Console.WriteLine(dr["BlogTitle"]);
+//    Console.WriteLine(dr["BlogAuthor"]);
+//    Console.WriteLine(dr["BlogContent"]);
+//}
 
-
+AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+// adoDotNetExample.Read();
+// adoDotNetExample.Create();
+// adoDotNetExample.Delete(2);
+adoDotNetExample.Edit(6);
 
 
 
