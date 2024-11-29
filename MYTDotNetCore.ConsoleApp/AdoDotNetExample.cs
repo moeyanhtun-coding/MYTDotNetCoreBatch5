@@ -33,7 +33,39 @@ namespace MYTDotNetCore.ConsoleApp
             }
         }
 
-        
+        public void Create()
+        {
+            Console.WriteLine("Blog Title: ");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author: ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content: ");
+            string content = Console.ReadLine();
+
+            SqlConnection sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+                     ([BlogTitle]
+                     ,[BlogAuthor]
+                     ,[BlogContent]
+                     ,[DeleteFlag])
+               VALUES
+                     (@BlogTitle
+                     ,@BlogAuthor
+                     ,@BlogContent
+                     ,0)";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
+            cmd.Parameters.AddWithValue("@BlogAuthor", author);
+            cmd.Parameters.AddWithValue("@BlogContent", content);
+
+            int result = cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+            Result(result);
+        }
+
         void Result(int result)
         {
             Console.WriteLine(result > 0 ? "Operation Successful" : "Operation Failed");
