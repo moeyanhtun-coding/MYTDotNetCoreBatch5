@@ -8,7 +8,6 @@ namespace MYTDotNetCore.ConsoleApp
     internal class AdoDotNetExample
     {
         private readonly string _connectionString = "Data Source=.; Initial Catalog=MYTDotNetCoreBatch5; User Id=sa; Password=sasa@123";
-
         public void Read()
         {
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
@@ -91,6 +90,40 @@ namespace MYTDotNetCore.ConsoleApp
             }
             Console.WriteLine("Data Not Found");
             return;
+        }
+
+        public void Update()
+        {
+            SqlConnection sqlConnection = new SqlConnection( _connectionString);
+
+            Console.WriteLine("BlogId:");
+            string BlogId = Console.ReadLine();
+
+            Console.WriteLine("BlogTitle: ");
+            string BlogTitle = Console.ReadLine();
+
+            Console.WriteLine("BlogAuthor: ");
+            string BlogAuthor = Console.ReadLine();
+
+            Console.WriteLine("BlogContent: ");
+            string BlogContent = Console.ReadLine();
+
+            sqlConnection.Open();
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogTitle] = @BlogTitle
+                  ,[BlogAuthor] = @BlogAuthor
+                  ,[BlogContent] = @BlogContent
+                  ,[DeleteFlag] = 0
+             WHERE BlogId = @BlogId";   
+
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", BlogId);
+            cmd.Parameters.AddWithValue("@BlogTitle", BlogTitle);
+            cmd.Parameters.AddWithValue("@BlogAuthor", BlogAuthor);
+            cmd.Parameters.AddWithValue("@BlogContent", BlogContent);
+
+            int result = cmd.ExecuteNonQuery();
+            Result(result);
         }
 
         public void Delete(int id)

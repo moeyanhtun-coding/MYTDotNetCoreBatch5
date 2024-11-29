@@ -141,7 +141,7 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 // adoDotNetExample.Create();
 // adoDotNetExample.Delete(2);
 adoDotNetExample.Edit(6);
-
+// adoDotNetExample.Update();
 
 
 
