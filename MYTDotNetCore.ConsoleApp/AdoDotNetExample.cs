@@ -93,6 +93,18 @@ namespace MYTDotNetCore.ConsoleApp
             return;
         }
 
+        public void Delete(int id)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            int result = cmd.ExecuteNonQuery();
+            Result(result);
+        }
+
         void Result(int result)
         {
             Console.WriteLine(result > 0 ? "Operation Successful" : "Operation Failed");
