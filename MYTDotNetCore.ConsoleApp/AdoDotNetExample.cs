@@ -66,6 +66,33 @@ namespace MYTDotNetCore.ConsoleApp
             Result(result);
         }
 
+        public void Edit(int id)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
+            string query = @"SELECT [BlogId]
+                   ,[BlogTitle]
+                   ,[BlogAuthor]
+                   ,[BlogContent]
+                   ,[DeleteFlag]
+                  FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            while (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                Console.WriteLine(dr["BlogTitle"]);
+                Console.WriteLine(dr["BlogAuthor"]);
+                Console.WriteLine(dr["BlogContent"]);
+                return;
+            }
+            Console.WriteLine("Data Not Found");
+            return;
+        }
+
         void Result(int result)
         {
             Console.WriteLine(result > 0 ? "Operation Successful" : "Operation Failed");
