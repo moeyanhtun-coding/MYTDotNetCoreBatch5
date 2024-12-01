@@ -25,7 +25,7 @@ namespace MYTDotNetCore.ConsoleApp
             adapter.Fill(dt);
             foreach (DataRow dr in dt.Rows)
             {
-                Console.WriteLine(dr["BlogId"]);
+                Console.WriteLine(dr[columnName: "BlogId"]);
                 Console.WriteLine(dr["BlogTitle"]);
                 Console.WriteLine(dr["BlogAuthor"]);
                 Console.WriteLine(dr["BlogContent"]);
@@ -94,7 +94,7 @@ namespace MYTDotNetCore.ConsoleApp
 
         public void Update()
         {
-            SqlConnection sqlConnection = new SqlConnection( _connectionString);
+            SqlConnection sqlConnection = new SqlConnection(_connectionString);
 
             Console.WriteLine("BlogId:");
             string BlogId = Console.ReadLine();
@@ -114,7 +114,7 @@ namespace MYTDotNetCore.ConsoleApp
                   ,[BlogAuthor] = @BlogAuthor
                   ,[BlogContent] = @BlogContent
                   ,[DeleteFlag] = 0
-             WHERE BlogId = @BlogId";   
+             WHERE BlogId = @BlogId";
 
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
             cmd.Parameters.AddWithValue("@BlogId", BlogId);
