@@ -136,15 +136,21 @@ using MYTDotNetCore.ConsoleApp;
 //    Console.WriteLine(dr["BlogContent"]);
 //}
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
- adoDotNetExample.Read();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+// adoDotNetExample.Read();
 // adoDotNetExample.Create();
 // adoDotNetExample.Delete(2);
 // adoDotNetExample.Edit(6);
 // adoDotNetExample.Update();
 
 DapperExample dapperExample = new DapperExample();
-dapperExample.Read();
+//dapperExample.Create();
+dapperExample.Edit(8);
+//dapperExample.Result("testing" , 1 
+//dapperExample.Update(8, "Update new update", "Update new one ", "Update new one");
+dapperExample.Delete(8);
+dapperExample.Edit(8);
+
 
 
 
