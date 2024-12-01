@@ -137,11 +137,14 @@ using MYTDotNetCore.ConsoleApp;
 //}
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-// adoDotNetExample.Read();
+ adoDotNetExample.Read();
 // adoDotNetExample.Create();
 // adoDotNetExample.Delete(2);
-adoDotNetExample.Edit(6);
+// adoDotNetExample.Edit(6);
 // adoDotNetExample.Update();
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Read();
 
 
 
