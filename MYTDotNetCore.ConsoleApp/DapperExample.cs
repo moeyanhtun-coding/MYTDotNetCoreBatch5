@@ -70,7 +70,7 @@ public class DapperExample
                   ,[BlogAuthor] = @BlogAuthor
                   ,[BlogContent] = @BlogContent
                   ,[DeleteFlag] = 0
-             WHERE BlogId = @BlogId";
+             WHERE BlogId = @BlogId and DeleteFlag = 0";
         using (IDbConnection db = new SqlConnection(_connectionString))
         {
             var result = db.Execute(query, new {BlogId = id, BlogTitle =  title, BlogAuthor = author, BlogContent = content });
