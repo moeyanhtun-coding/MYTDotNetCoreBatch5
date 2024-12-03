@@ -8,7 +8,8 @@ namespace MYTDotNetCore.ConsoleApp
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer();
+                string connectionString = "Data Source=.; Initial Catalog = MYTDotNetCoreBatch5; User ID=sa; Password=sasa@123;"
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
     }
