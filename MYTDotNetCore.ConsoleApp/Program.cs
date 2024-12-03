@@ -143,13 +143,17 @@ using MYTDotNetCore.ConsoleApp;
 // adoDotNetExample.Edit(6);
 // adoDotNetExample.Update();
 
-DapperExample dapperExample = new DapperExample();
+//DapperExample dapperExample = new DapperExample();
 //dapperExample.Create();
-dapperExample.Edit(8);
+//dapperExample.Edit(8);
 //dapperExample.Result("testing" , 1 
 //dapperExample.Update(8, "Update new update", "Update new one ", "Update new one");
-dapperExample.Delete(8);
-dapperExample.Edit(8);
+//dapperExample.Delete(8);
+//dapperExample.Edit(8E);
+EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Read();
+//eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
+eFCoreExample.Edit(10);
 
 
 

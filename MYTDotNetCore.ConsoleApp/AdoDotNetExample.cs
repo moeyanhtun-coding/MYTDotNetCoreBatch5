@@ -114,7 +114,7 @@ namespace MYTDotNetCore.ConsoleApp
                   ,[BlogAuthor] = @BlogAuthor
                   ,[BlogContent] = @BlogContent
                   ,[DeleteFlag] = 0
-             WHERE BlogId = @BlogId";
+             WHERE BlogId = @BlogId";   
 
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
             cmd.Parameters.AddWithValue("@BlogId", BlogId);
