@@ -44,6 +44,11 @@ namespace MYTDotNetCore.ConsoleApp
 
             AppDbContext db = new AppDbContext();
             var item = db.Blogs.Where<BlogDataModel>(x => x.BlogId == id && x.DeleteFlag == false).FirstOrDefault();
+            if (item is null)
+            {
+                Console.WriteLine("No Data Found ");
+                return;
+            }
             Console.WriteLine(item.BlogId);
             Console.WriteLine(item.BlogTitle);
             Console.WriteLine(item.BlogAuthor);
@@ -59,11 +64,8 @@ namespace MYTDotNetCore.ConsoleApp
             if(item is null)
             {
                 Console.WriteLine("No Data Found");
-                Console.WriteLine("No Data Found");
                 return;
             }
-            if (item is null)
-                return;
             if (!string.IsNullOrEmpty(title))
                 item.BlogTitle = title;
             if (!string.IsNullOrEmpty(author))
@@ -72,8 +74,8 @@ namespace MYTDotNetCore.ConsoleApp
                 item.BlogContent = content;
 
             db.Entry(item).State = EntityState.Modified;
-            var resutl = db.SaveChanges();
-            Console.WriteLine(resutl == 1);
+            var result = db.SaveChanges();
+            Console.WriteLine(result == 1);
         }
 
         public void Result(int result)

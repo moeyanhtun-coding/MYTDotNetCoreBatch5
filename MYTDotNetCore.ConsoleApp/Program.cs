@@ -153,7 +153,9 @@ using MYTDotNetCore.ConsoleApp;
 EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Read();
 //eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
-eFCoreExample.Edit(10);
+eFCoreExample.Edit(30);
+eFCoreExample.Update( 30, "Update Title", "", "update content");
+eFCoreExample.Edit(30);
 
 
 
