@@ -156,6 +156,8 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 eFCoreExample.Edit(30);
 eFCoreExample.Update( 30, "Update Title", "", "update content");
 eFCoreExample.Edit(30);
+eFCoreExample.Edit(10);
+eFCoreExample.Delelte(10);
 
 
 

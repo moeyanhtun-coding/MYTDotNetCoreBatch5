@@ -61,7 +61,7 @@ namespace MYTDotNetCore.ConsoleApp
             var item = db.Blogs
                 .AsNoTracking()
                 .FirstOrDefault(x => x.BlogId == id && x.DeleteFlag == false);
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No Data Found");
                 return;
@@ -77,7 +77,19 @@ namespace MYTDotNetCore.ConsoleApp
             var result = db.SaveChanges();
             Console.WriteLine(result == 1);
         }
-
+        public void Delelte(int id)
+        {
+            AppDbContext db = new AppDbContext();
+            var item = db.Blogs.AsNoTracking().Where(x => x.BlogId == id && x.DeleteFlag == false).FirstOrDefault();
+            if (item is null)
+            {
+                Console.WriteLine("No Data found");
+                return;
+            }
+            db.Entry(item).State = EntityState.Deleted;
+           var result = db.SaveChanges();
+            Result(result);
+        }
         public void Result(int result)
         {
             Console.WriteLine(result > 0 ? "Operation Successful" : "Operation Fail");
