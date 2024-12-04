@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
 using MYTDotNetCore.ConsoleApp.Models;
 
 namespace MYTDotNetCore.ConsoleApp
@@ -87,7 +79,7 @@ namespace MYTDotNetCore.ConsoleApp
                 return;
             }
             db.Entry(item).State = EntityState.Deleted;
-           var result = db.SaveChanges();
+            var result = db.SaveChanges();
             Result(result);
         }
         public void Result(int result)
