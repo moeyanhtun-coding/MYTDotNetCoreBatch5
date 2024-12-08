@@ -124,7 +124,16 @@ namespace MYTDotNetCore.RestAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            String query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [DeleteFlag] = 1
+             WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            int result = cmd.ExecuteNonQuery();
+            
+            return Ok(result > 0 ? "Delete Successful" : "Delete Fail");
         }
 
     }
