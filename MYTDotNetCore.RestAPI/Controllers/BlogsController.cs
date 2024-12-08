@@ -32,7 +32,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
         public IActionResult EditBlog(int id)
         {
             var item = _db.TblBlogs.AsNoTracking().
-                FirstOrDefault(x => x.DeleteFlag != true && 
+                FirstOrDefault(x => x.DeleteFlag != true &&
                 x.BlogId == id);
             if (item is null)
                 return NotFound();
@@ -71,7 +71,9 @@ namespace MYTDotNetCore.RestAPI.Controllers
                 item.BlogAuthor = blog.BlogAuthor;
             if (!string.IsNullOrEmpty(blog.BlogContent))
                 item.BlogContent = blog.BlogContent;
+
             item.DeleteFlag = blog.DeleteFlag;
+
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
             return Ok(item);
