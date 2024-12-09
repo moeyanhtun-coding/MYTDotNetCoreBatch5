@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Reflection.PortableExecutable;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using MYTDotNetCore.Database.Model;
@@ -44,7 +45,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            String query = @"SELECT [BlogId]
+            string query = @"SELECT [BlogId]
                    ,[BlogTitle]
                    ,[BlogAuthor]
                    ,[BlogContent]
@@ -76,7 +77,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
         {
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
-            String query = @"INSERT INTO [dbo].[Tbl_Blog]
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
                      ([BlogTitle]
                      ,[BlogAuthor]
                      ,[BlogContent]
@@ -99,7 +100,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
         {
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
-            String query = @"UPDATE [dbo].[Tbl_Blog]
+            string query = @"UPDATE [dbo].[Tbl_Blog]
                SET [BlogTitle] = @BlogTitle
                   ,[BlogAuthor] = @BlogAuthor
                   ,[BlogContent] = @BlogContent
@@ -116,9 +117,36 @@ namespace MYTDotNetCore.RestAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult PatchBlog(int id, TblBlog blog)
+        public IActionResult PatchBlog(int id, BlogViewModel blog)
         {
-            return Ok();
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            string conditions = "";
+            if (!string.IsNullOrEmpty(blog.Title))
+                conditions += " [BlogTitle] = @BlogTitle, ";
+            if (!string.IsNullOrEmpty(blog.Author))
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+            if (!string.IsNullOrEmpty(blog.Content))
+                conditions += " [BlogContent] = @BlogContent, ";
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+               SET {conditions} ,[DeleteFlag] = 0
+             WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            if (!string.IsNullOrEmpty(blog.Title))
+                cmd.Parameters.AddWithValue("@BlogTitle", blog.Title);
+            if (!string.IsNullOrEmpty(blog.Author))
+                cmd.Parameters.AddWithValue("@BlogAuthor", blog.Author);
+            if (!string.IsNullOrEmpty(blog.Content))
+                cmd.Parameters.AddWithValue("@BlogContent", blog.Content);
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return Ok(result > 0 ? "Update Successful" : "Update Fail");
         }
 
         [HttpDelete("{id}")]
@@ -126,13 +154,13 @@ namespace MYTDotNetCore.RestAPI.Controllers
         {
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
-            String query = @"UPDATE [dbo].[Tbl_Blog]
+            string query = @"UPDATE [dbo].[Tbl_Blog]
                SET [DeleteFlag] = 1
              WHERE BlogId = @BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
             int result = cmd.ExecuteNonQuery();
-            
+
             return Ok(result > 0 ? "Delete Successful" : "Delete Fail");
         }
 
