@@ -49,7 +49,7 @@ namespace MYTDotNetCore.ConsoleApp
                          ,[BlogContent]
                          ,[DeleteFlag]
                         FROM [dbo].[Tbl_Blog] WHERE DeleteFlag = 0 AND BlogId = @BlogId";
-           var dt = _adoDotNetService.Query(query, new SqlParameterModel("@BlogId", id ));
+            var dt = _adoDotNetService.Query(query, new SqlParameterModel("@BlogId", id));
             if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("There is no data found");
@@ -59,6 +59,29 @@ namespace MYTDotNetCore.ConsoleApp
             Console.WriteLine(dt.Rows[0]["BlogTitle"]);
             Console.WriteLine(dt.Rows[0]["BlogAuthor"]);
             Console.WriteLine(dt.Rows[0]["BlogContent"]);
+        }
+
+        public void Create()
+        {
+            Console.WriteLine("BlogTitle: ");
+            string title = Console.ReadLine();
+            Console.WriteLine("BlogAuthor: ");
+            string author = Console.ReadLine(); 
+            Console.WriteLine("BlogContent: ");
+            string content = Console.ReadLine();
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+                     ([BlogTitle]
+                     ,[BlogAuthor]
+                     ,[BlogContent]
+                     ,[DeleteFlag])
+               VALUES
+                     (@BlogTitle
+                     ,@BlogAuthor
+                     ,@BlogContent
+                     ,0)";
+            int result = _adoDotNetService.Execute(query, new SqlParameterModel("@BlogTitle", title),
+                new SqlParameterModel("@BlogAuthor", author), new SqlParameterModel("@BlogContent", content));
+            Console.WriteLine(result > 0 ? "Creation Successful" : "Creation fail");
         }
     }
 }
