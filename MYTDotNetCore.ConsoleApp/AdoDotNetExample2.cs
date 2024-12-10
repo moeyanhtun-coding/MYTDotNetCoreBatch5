@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MYTDotNetCore.Shared
+using static MYTDotNetCore.Shared.AdoDotNetService;
 
 namespace MYTDotNetCore.ConsoleApp
 {
@@ -49,7 +49,7 @@ namespace MYTDotNetCore.ConsoleApp
                          ,[BlogContent]
                          ,[DeleteFlag]
                         FROM [dbo].[Tbl_Blog] WHERE DeleteFlag = 0 AND BlogId = @BlogId";
-           var dt = _adoDotNetService.Query(query, new AdoDotNetService.SqlParameterModel { Name = });
+           var dt = _adoDotNetService.Query(query, new SqlParameterModel("@Blog Id", id ));
         }
     }
 }
