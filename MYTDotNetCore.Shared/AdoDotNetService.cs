@@ -32,6 +32,22 @@ namespace MYTDotNetCore.Shared
             return td;
         }
 
+        public int Execute(string query, params SqlParameterModel[] sqlParameterModels)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            if (sqlParameterModels is not null)
+            {
+                foreach (var paramenter in sqlParameterModels)
+                {
+                    cmd.Parameters.AddWithValue(paramenter.Name, paramenter.Value);
+                }
+            }
+            int result = cmd.ExecuteNonQuery();
+            return result;
+        }
+
         public class SqlParameterModel
         {
             public string Name { get; set; }
