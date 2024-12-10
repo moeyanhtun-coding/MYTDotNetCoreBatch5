@@ -66,7 +66,7 @@ namespace MYTDotNetCore.ConsoleApp
             Console.WriteLine("BlogTitle: ");
             string title = Console.ReadLine();
             Console.WriteLine("BlogAuthor: ");
-            string author = Console.ReadLine(); 
+            string author = Console.ReadLine();
             Console.WriteLine("BlogContent: ");
             string content = Console.ReadLine();
             string query = @"INSERT INTO [dbo].[Tbl_Blog]
@@ -90,7 +90,7 @@ namespace MYTDotNetCore.ConsoleApp
                SET [BlogTitle] = @BlogTitle
                   ,[BlogAuthor] = @BlogAuthor
                   ,[BlogContent] = @BlogContent
-                  ,[DeleteFlag] = 0 WHERE BlogId = @BlogId" ;
+                  ,[DeleteFlag] = 0 WHERE BlogId = @BlogId";
             Console.WriteLine("Enter Id");
             string id = Console.ReadLine();
             Console.WriteLine("Enter Title");
@@ -101,11 +101,21 @@ namespace MYTDotNetCore.ConsoleApp
             string content = Console.ReadLine();
 
             int result = _adoDotNetService.Execute(query,
-                new SqlParameterModel("@BlogId", id), 
-                new SqlParameterModel("@BlogTitle" , title),
+                new SqlParameterModel("@BlogId", id),
+                new SqlParameterModel("@BlogTitle", title),
                 new SqlParameterModel("@BlogAuthor", author),
                 new SqlParameterModel("@BlogContent", content));
             Console.WriteLine(result > 0 ? "Update Successful" : "Update fail");
+        }
+
+        public void Delete()
+        {
+            string query = "UPDATE tbl_blog SET DeleteFlag = 1 WHERE BlogId = @BlogId";
+            Console.WriteLine("Enter Blog Id: ");   
+            string id = Console.ReadLine();
+
+            int result = _adoDotNetService.Execute(query, new SqlParameterModel("@BlogId", id));
+            Console.WriteLine(result < 0 ? "Deleted Successful" : "Deleted Fail");
         }
     }
 }
