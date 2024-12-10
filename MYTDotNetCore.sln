@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.ConsoleApp2",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.RestAPI", "MYTDotNetCore.RestAPI\MYTDotNetCore.RestAPI.csproj", "{7CCDF859-68AD-466A-B3D4-AF223D6FB2E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.Shared", "MYTDotNetCore.Shared\MYTDotNetCore.Shared.csproj", "{6A568173-CE29-4180-BC49-4C27B086A8BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7CCDF859-68AD-466A-B3D4-AF223D6FB2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CCDF859-68AD-466A-B3D4-AF223D6FB2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CCDF859-68AD-466A-B3D4-AF223D6FB2E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
