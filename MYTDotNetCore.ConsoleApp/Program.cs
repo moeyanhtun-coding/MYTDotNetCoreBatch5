@@ -153,6 +153,7 @@ using MYTDotNetCore.ConsoleApp;
 AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
 //eFCoreExample2.Create();
 eFCoreExample2.Read();
+//eFCoreExample2.Update();
 //eFCoreExample2.Edit();
 //eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
 //eFCoreExample.Edit(30);

@@ -83,5 +83,29 @@ namespace MYTDotNetCore.ConsoleApp
                 new SqlParameterModel("@BlogAuthor", author), new SqlParameterModel("@BlogContent", content));
             Console.WriteLine(result > 0 ? "Creation Successful" : "Creation fail");
         }
+
+        public void Update()
+        {
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogTitle] = @BlogTitle
+                  ,[BlogAuthor] = @BlogAuthor
+                  ,[BlogContent] = @BlogContent
+                  ,[DeleteFlag] = 0 WHERE BlogId = @BlogId" ;
+            Console.WriteLine("Enter Id");
+            string id = Console.ReadLine();
+            Console.WriteLine("Enter Title");
+            string title = Console.ReadLine();
+            Console.WriteLine("Enter Author");
+            string author = Console.ReadLine();
+            Console.WriteLine("Enter Content");
+            string content = Console.ReadLine();
+
+            int result = _adoDotNetService.Execute(query,
+                new SqlParameterModel("@BlogId", id), 
+                new SqlParameterModel("@BlogTitle" , title),
+                new SqlParameterModel("@BlogAuthor", author),
+                new SqlParameterModel("@BlogContent", content));
+            Console.WriteLine(result > 0 ? "Update Successful" : "Update fail");
+        }
     }
 }
