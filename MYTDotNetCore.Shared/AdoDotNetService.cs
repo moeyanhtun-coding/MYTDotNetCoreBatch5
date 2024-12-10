@@ -28,9 +28,7 @@ namespace MYTDotNetCore.Shared
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable td = new DataTable();
             adapter.Fill(td);
-
             connection.Close();
-
             return td;
         }
 

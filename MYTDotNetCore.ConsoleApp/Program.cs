@@ -152,6 +152,7 @@ using MYTDotNetCore.ConsoleApp;
 //dapperExample.Edit(8E);
 AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
 eFCoreExample2.Read();
+eFCoreExample2.Edit();
 //eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
 //eFCoreExample.Edit(30);
 //eFCoreExample.Update( 30, "Update Title", "", "update content");

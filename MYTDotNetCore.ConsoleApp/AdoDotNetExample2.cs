@@ -49,7 +49,7 @@ namespace MYTDotNetCore.ConsoleApp
                          ,[BlogContent]
                          ,[DeleteFlag]
                         FROM [dbo].[Tbl_Blog] WHERE DeleteFlag = 0 AND BlogId = @BlogId";
-           var dt = _adoDotNetService.Query(query, new SqlParameterModel("@Blog Id", id ));
+           var dt = _adoDotNetService.Query(query, new SqlParameterModel("@BlogId", id ));
             if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("There is no data found");
