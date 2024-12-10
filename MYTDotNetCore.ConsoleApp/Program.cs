@@ -150,14 +150,14 @@ using MYTDotNetCore.ConsoleApp;
 //dapperExample.Update(8, "Update new update", "Update new one ", "Update new one");
 //dapperExample.Delete(8);
 //dapperExample.Edit(8E);
-EFCoreExample eFCoreExample = new EFCoreExample();
-//eFCoreExample.Read();
+AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
+eFCoreExample2.Read();
 //eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
-eFCoreExample.Edit(30);
-eFCoreExample.Update( 30, "Update Title", "", "update content");
-eFCoreExample.Edit(30);
-eFCoreExample.Edit(10);
-eFCoreExample.Delelte(10);
+//eFCoreExample.Edit(30);
+//eFCoreExample.Update( 30, "Update Title", "", "update content");
+//eFCoreExample.Edit(30);
+//eFCoreExample.Edit(10);
+//eFCoreExample.Delelte(10);
 
 
 
