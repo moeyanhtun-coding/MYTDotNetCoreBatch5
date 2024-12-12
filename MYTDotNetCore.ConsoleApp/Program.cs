@@ -155,6 +155,8 @@ AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
 DapperExample2 dapperExample2 = new DapperExample2();
 dapperExample2.Read();
 dapperExample2.Edit(13);
+dapperExample2.Update(13, "Update", "Update", "Update");
+dapperExample2.Edit(13);
 //eFCoreExample2.Create();
 //eFCoreExample2.Read();
 //eFCoreExample2.Update();

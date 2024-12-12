@@ -44,5 +44,15 @@ namespace MYTDotNetCore.ConsoleApp
             Console.WriteLine("BlogAuthor: " + item.BlogAuthor);
             Console.WriteLine("BlogContent: " + item.BlogContent);
         }
+        public void Update(int id, string title, string author, string content )
+        {
+              string query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogTitle] = @BlogTitle
+                  ,[BlogAuthor] = @BlogAuthor
+                  ,[BlogContent] = @BlogContent
+                  ,[DeleteFlag] = 0
+             WHERE BlogId = @BlogId and DeleteFlag = 0";
+                 _dapperService.Execute(query, new { BlogId = id, BlogTitle = title , BlogAuthor = author, BlogContent = content});
+        }
     }
 }
