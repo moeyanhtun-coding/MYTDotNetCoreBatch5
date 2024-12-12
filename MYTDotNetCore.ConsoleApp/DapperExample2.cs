@@ -39,6 +39,10 @@ namespace MYTDotNetCore.ConsoleApp
                          ,[DeleteFlag]
                         FROM [dbo].[Tbl_Blog] WHERE DeleteFlag = 0 AND BlogId = @BlogId";
             var item = _dapperService.QueryFirstOrDefault<BlogDapperDataModel>(query, new { BlogId = id });
+            if(item is null){
+                Console.WriteLine("Item Not Found");
+                return;
+            }
             Console.WriteLine("BlogId: " + item.BlogId);
             Console.WriteLine("BlogTitle: " + item.BlogTitle);
             Console.WriteLine("BlogAuthor: " + item.BlogAuthor);
@@ -52,7 +56,14 @@ namespace MYTDotNetCore.ConsoleApp
                   ,[BlogContent] = @BlogContent
                   ,[DeleteFlag] = 0
              WHERE BlogId = @BlogId and DeleteFlag = 0";
-                 _dapperService.Execute(query, new { BlogId = id, BlogTitle = title , BlogAuthor = author, BlogContent = content});
+                 var result = _dapperService.Execute(query, new { BlogId = id, BlogTitle = title , BlogAuthor = author, BlogContent = content});
+            Console.WriteLine(result);
+        }
+        public void Delete(int id) 
+        {
+          string query = "UPDATE tbl_blog SET DeleteFlag = 1 WHERE BlogId = @BlogId";
+          var result =  _dapperService.Execute(query, new { BlogId = id });
+            Console.WriteLine(result);
         }
     }
 }
