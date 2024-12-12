@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.RestAPI", "MY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.Shared", "MYTDotNetCore.Shared\MYTDotNetCore.Shared.csproj", "{6A568173-CE29-4180-BC49-4C27B086A8BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTDotNetCore.MinimalApi", "MYTDotNetCore.MinimalApi\MYTDotNetCore.MinimalApi.csproj", "{088056C5-5B9D-433D-9226-4E57AF30343E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A568173-CE29-4180-BC49-4C27B086A8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088056C5-5B9D-433D-9226-4E57AF30343E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088056C5-5B9D-433D-9226-4E57AF30343E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088056C5-5B9D-433D-9226-4E57AF30343E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088056C5-5B9D-433D-9226-4E57AF30343E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
