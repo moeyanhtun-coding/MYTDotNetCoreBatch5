@@ -30,5 +30,19 @@ namespace MYTDotNetCore.ConsoleApp
                 Console.WriteLine("BlogContent: " + item.BlogContent);
             }
         }
+        public void Edit(int id)
+        {
+            string query = @"SELECT [BlogId]
+                         ,[BlogTitle]
+                         ,[BlogAuthor]
+                         ,[BlogContent]
+                         ,[DeleteFlag]
+                        FROM [dbo].[Tbl_Blog] WHERE DeleteFlag = 0 AND BlogId = @BlogId";
+            var item = _dapperService.QueryFirstOrDefault<BlogDapperDataModel>(query, new { BlogId = id });
+            Console.WriteLine("BlogId: " + item.BlogId);
+            Console.WriteLine("BlogTitle: " + item.BlogTitle);
+            Console.WriteLine("BlogAuthor: " + item.BlogAuthor);
+            Console.WriteLine("BlogContent: " + item.BlogContent);
+        }
     }
 }
