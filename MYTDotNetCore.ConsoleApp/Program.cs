@@ -2,6 +2,7 @@
 
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using MYTDotNetCore.ConsoleApp;
 
 //Console.WriteLine("Hello, World!");
@@ -151,8 +152,11 @@ using MYTDotNetCore.ConsoleApp;
 //dapperExample.Delete(8);
 //dapperExample.Edit(8E);
 AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
+DapperExample2 dapperExample2 = new DapperExample2();
+dapperExample2.Read();
+dapperExample2.Edit(13);
 //eFCoreExample2.Create();
-eFCoreExample2.Read();
+//eFCoreExample2.Read();
 //eFCoreExample2.Update();
 //eFCoreExample2.Edit();
 //eFCoreExample.Create("this is new Efcore title", "this is new Efcore AUthor", "this is new efcore content");
