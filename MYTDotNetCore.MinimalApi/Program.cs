@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
 using MYTDotNetCore.Database.Model;
 
@@ -43,7 +44,9 @@ app.MapGet("/blogs", () =>
     AppDbContext db = new AppDbContext();
     var model = db.TblBlogs.ToList();
     return Results.Ok(model);
-});
+})
+    .WithName("GetBlogs")
+    .WithOpenApi();
 
 app.MapPost("/blogs", (TblBlog blog) =>
 {
@@ -51,36 +54,57 @@ app.MapPost("/blogs", (TblBlog blog) =>
     db.Add(blog);
     db.SaveChanges();
     return Results.Ok(blog);
-});
+})
+    .WithName("CreateBlog")
+    .WithOpenApi();
 
 app.MapGet("/blogs/{id}", (int id) =>
 {
     AppDbContext db = new AppDbContext();
-   var model = db.TblBlogs.AsNoTracking().Where(x =>x.BlogId == id).FirstOrDefault();
+    var model = db.TblBlogs
+     .AsNoTracking()
+     .Where(x => x.BlogId == id)
+     .FirstOrDefault();
+    if (model is null)
+        return Results.NotFound("Blog Not Found");
     return Results.Ok(model);
-});
+})
+    .WithName("GetBlog")
+    .WithOpenApi();
 
-app.MapPut("/blogs/{id}", (int id,TblBlog blog) =>
+app.MapPut("/blogs/{id}", (int id, TblBlog blog) =>
 {
     AppDbContext db = new AppDbContext();
-    var model = db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+    var model = db.TblBlogs
+    .AsNoTracking()
+    .FirstOrDefault(x => x.BlogId == id)!;
+    if (model is null)
+        return Results.NotFound("Blog Not Found");
     model.BlogTitle = blog.BlogTitle;
-    model.BlogAuthor = blog.BlogAuthor; 
+    model.BlogAuthor = blog.BlogAuthor;
     model.BlogContent = blog.BlogContent;
     db.Entry(model).State = EntityState.Modified;
     db.SaveChanges();
-    return Results.Ok(blog);
-});
+     return Results.Ok(blog);
+})
+    .WithName("UpdateBlog")
+    .WithOpenApi();
 
 app.MapDelete("/blogs/{id}", (int id) =>
 {
     AppDbContext db = new AppDbContext();
-    var model =db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+    var model = db.TblBlogs.AsNoTracking()
+    .FirstOrDefault(x => x.BlogId == id)!;
+    if (model is null)
+        return Results.NotFound("Blog Not Found");
     model.DeleteFlag = true;
+
     db.Entry(model).State = EntityState.Modified;
     db.SaveChanges();
     return Results.Ok(model);
-});
+})
+    .WithName("DeleteBlog")
+    .WithOpenApi();
 app.Run();
 
 //internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
