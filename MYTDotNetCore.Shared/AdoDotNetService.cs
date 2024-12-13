@@ -52,9 +52,7 @@ namespace MYTDotNetCore.Shared
         {
             public string Name { get; set; }
             public object Value { get; set; }
-            public string V { get; }
-            public string? Id { get; }
-
+           
             public SqlParameterModel() { }
             public SqlParameterModel(string name, object value)
             {
