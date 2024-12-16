@@ -58,14 +58,13 @@ public static class BirdEndpoint
                 return Results.BadRequest(new { message = "Invalid data format in the JSON file." });
             }
             var lst = result.Tbl_Bird.ToList();
-
-
             var item = lst.Where(x => x.Id == id).FirstOrDefault();
 
             if (item is null)
             {
                 return Results.BadRequest(new { message = "Item is not found" });
             }
+
             item.Id = id;
             if (!string.IsNullOrEmpty(requestModel.BirdEnglishName))
                 item.BirdEnglishName = requestModel.BirdEnglishName;
@@ -81,6 +80,23 @@ public static class BirdEndpoint
 
             return Results.Ok(new {message = "Update Successsful"});
         });
+
+        app.MapDelete("/birds/{id}", (int id) => 
+        {
+            string folderPath = "Data/Birds.json";
+            var jsonStr = File.ReadAllText (folderPath);
+            var result =JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+            var lst = result.Tbl_Bird.ToList();
+            var item = lst.FirstOrDefault(x => x.Id == id)!;
+            if (item is null) return Results.BadRequest(new { message = "Bird is not found" });
+            result.Tbl_Bird.Remove(item);
+
+            var updateStr = JsonConvert.SerializeObject(result, Formatting.Indented);
+            File.WriteAllText(folderPath, updateStr);
+            return Results.Ok(new { message = "Bird Delete successful" });
+        });
+
     }
 }
 

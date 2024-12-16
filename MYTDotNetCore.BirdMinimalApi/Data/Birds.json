@@ -146,20 +146,6 @@
       "BirdEnglishName": "string",
       "Description": "string",
       "ImagePath": "string"
-    },
-    {
-      "Id": 22,
-      "BirdMyanmarName": "update",
-      "BirdEnglishName": "string",
-      "Description": "string",
-      "ImagePath": "string"
-    },
-    {
-      "Id": 23,
-      "BirdMyanmarName": "string",
-      "BirdEnglishName": "string",
-      "Description": "string",
-      "ImagePath": "string"
     }
   ]
 }
