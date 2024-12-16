@@ -24,7 +24,7 @@ namespace MYTDotNetCore.Domain.Feature.Blog
             return item;
         }
 
-        public int PostBlog(TblBlog reqModel)
+        public int CreateBlog(TblBlog reqModel)
         {
             _db.TblBlogs.Add(reqModel);
             var result = _db.SaveChanges();
