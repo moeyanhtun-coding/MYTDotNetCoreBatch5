@@ -52,10 +52,10 @@ internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary
 
 public class BirdResponseModel
 {
-    public BridModel[] Tbl_Bird { get; set; }
+    public List<BirdModel> Tbl_Bird { get; set; }
 }
 
-public class BridModel
+public class BirdModel
 {
     public int Id { get; set; }
     public string BirdMyanmarName { get; set; }

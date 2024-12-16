@@ -28,6 +28,22 @@ public static class BirdEndpoint
             .WithName("GetBird")
             .WithOpenApi();
 
+        app.MapPost("/birds", ( string birdEnglish, string birdMyanmar, string description) => {
+            string folderPath = "Data/Birds.json";
+            var json = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<BirdResponseModel>(json)!;
+            var lst = result.Tbl_Bird.ToList();
+            BirdModel bird = new BirdModel()
+            {
+                Id = lst.Max(x => x.Id) + 1,
+                BirdMyanmarName = birdMyanmar,
+                BirdEnglishName = birdEnglish,
+                Description = description,
+                ImagePath = ""
+            };
+            lst.Add(bird);
+            return Results.Ok(lst);
+        }); ;
     }
 }
 
