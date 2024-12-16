@@ -35,7 +35,7 @@ public class BlogServiceController : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public IActionResult PatchBlog(, int id, TblBlog reqModel)
+    public IActionResult PatchBlog( int id, TblBlog reqModel)
     {
         var result = _blogService.UpdateBlog(id, reqModel);
         if (result is 0) return BadRequest(new { message = "Blog Updated Fail" });

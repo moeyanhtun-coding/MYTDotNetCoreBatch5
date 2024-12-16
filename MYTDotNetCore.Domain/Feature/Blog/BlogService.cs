@@ -59,7 +59,7 @@ namespace MYTDotNetCore.Domain.Feature.Blog
 
             item.DeleteFlag = true;
 
-            _db.Entry(item).State = EntityState.Deleted;
+            _db.Entry(item).State = EntityState.Modified;
             var result = _db.SaveChanges();
             return result;
         }
