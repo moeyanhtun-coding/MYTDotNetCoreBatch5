@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MYTDotNetCore.Database\MYTDotNetCore.Database.csproj" />
+    <ProjectReference Include="..\MYTDotNetCore.Domain\MYTDotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>
