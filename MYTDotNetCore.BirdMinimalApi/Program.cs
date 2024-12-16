@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using MYTDotNetCore.BirdMinimalApi.Endpoints.Bird;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,29 +40,8 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/birds", () =>
-{
-    string folderPath = "Data/Birds.json";
-    var json = File.ReadAllText(folderPath);
-    var result = JsonConvert.DeserializeObject<BirdResponseModel>(json);
 
-    return Results.Ok(result);
-})
-    .WithName("GetBirds")
-    .WithOpenApi();
-
-app.MapGet("/birds/{id}", (int id) =>
-{
-    string folderPath = "Data/Birds.json";
-    var json = File.ReadAllText(folderPath);
-    var result = JsonConvert.DeserializeObject<BirdResponseModel>(json);
-    var item = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
-    return Results.Ok(item);
-})
-    .WithName("GetBird")
-    .WithOpenApi();
-
-
+app.MapBirdEndpoint();
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
