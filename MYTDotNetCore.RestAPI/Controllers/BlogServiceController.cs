@@ -8,7 +8,7 @@ namespace MYTDotNetCore.RestAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BlogServiceController : ControllerBase
+public class BlogServiceController : BaseController
 {
     private readonly BlogService _blogService = new BlogService();
 
@@ -34,12 +34,13 @@ public class BlogServiceController : ControllerBase
         try
         {
             var model = await _blogService.CreateBlog(reqModel);
-            if (model.Response.RespType == EnumRespType.ValidationError)
-                return BadRequest(model);
-            if (model.Response.RespType == EnumRespType.SystemError)
-                return StatusCode(StatusCodes.Status500InternalServerError, model);
-
-            return Ok(model);
+            // if (model.Response.RespType == EnumRespType.ValidationError)
+            //     return BadRequest(model);
+            // if (model.Response.RespType == EnumRespType.SystemError)
+            //     return StatusCode(StatusCodes.Status500InternalServerError, model);
+            //
+            // return Ok(model);
+            return Execute(model);
         }
         catch (Exception e)
         {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace MYTDotNetCore.Database.Model;
 
-public partial class AppDbContext : DbContext
+public partial class  AppDbContext : DbContext
 {
     public AppDbContext()
     {
