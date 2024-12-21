@@ -60,9 +60,9 @@ namespace MYTDotNetCore.RestAPI.Controllers
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, TblBlog blog)
         {
-            var item = _db.TblBlogs.AsNoTracking()
-                  .Where(x => x.BlogId == id)
-                  .FirstOrDefault();
+            var item = _db.TblBlogs
+                .AsNoTracking()
+                .FirstOrDefault(x => x.BlogId == id);
             if (item is null)
                 return NotFound();
             if (!string.IsNullOrEmpty(blog.BlogTitle))
