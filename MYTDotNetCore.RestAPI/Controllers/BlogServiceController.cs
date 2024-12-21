@@ -27,11 +27,10 @@ public class BlogServiceController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateBlog(TblBlog reqModel)
+    public async Task< IActionResult> CreateBlog(TblBlog reqModel)
     {
-        var result = _blogService.CreateBlog(reqModel);
-        if (result is 0) return BadRequest(new { message = "Blog Create Fail" });
-        return Ok(new { message = "Creation Successful" });
+        var result = await _blogService.CreateBlog(reqModel);
+        return Ok(result);
     }
 
     [HttpPatch("{id}")]
