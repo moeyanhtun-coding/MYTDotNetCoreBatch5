@@ -27,7 +27,7 @@ public class BlogService
         return item;
     }
 
-    public async Task<TransferResponseModel> CreateBlog(TblBlog reqModel)
+    public async Task<Result<ResultBlogResponseModel>> CreateBlog(TblBlog reqModel)
     {
         TransferResponseModel model = new  TransferResponseModel();
 
