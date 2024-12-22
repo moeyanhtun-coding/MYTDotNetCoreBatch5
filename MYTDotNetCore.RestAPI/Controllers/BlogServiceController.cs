@@ -29,24 +29,32 @@ public class BlogServiceController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBlog(TblBlog reqModel)
+    public IActionResult CreateBlog(TblBlog reqModel)
     {
-        try
-        {
-            var model = await _blogService.CreateBlog(reqModel);
-            // if (model.Response.RespType == EnumRespType.ValidationError)
-            //     return BadRequest(model);
-            // if (model.Response.RespType == EnumRespType.SystemError)
-            //     return StatusCode(StatusCodes.Status500InternalServerError, model);
-            //
-            // return Ok(model);
-            return Execute(model);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(new { message = e.Message });
-        }
+        var result = _blogService.CreateBlog(reqModel);
+        return Ok(result);
     }
+    
+    
+    // [HttpPost]
+    // public async Task<IActionResult> CreateBlog(TblBlog reqModel)
+    // {
+    //     try
+    //     {
+    //         var model = await _blogService.CreateBlog(reqModel);
+    //         // if (model.Response.RespType == EnumRespType.ValidationError)
+    //         //     return BadRequest(model);
+    //         // if (model.Response.RespType == EnumRespType.SystemError)
+    //         //     return StatusCode(StatusCodes.Status500InternalServerError, model);
+    //         //
+    //         // return Ok(model);
+    //         return Execute(model);
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         return BadRequest(new { message = e.Message });
+    //     }
+    // }
 
     [HttpPatch("{id}")]
     public IActionResult PatchBlog(int id, TblBlog reqModel)
