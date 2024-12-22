@@ -16,6 +16,8 @@ public class BaseController : Controller
         {
             BaseResponseModel baseResponseModel =
                 JsonConvert.DeserializeObject<BaseResponseModel>(jObj["Response"]!.ToString())!;
+            if (baseResponseModel.RespType == EnumRespType.pending)
+                return StatusCode(201, model);
             if(baseResponseModel.RespType == EnumRespType.ValidationError)
                 return BadRequest(model);
             if(baseResponseModel.RespType == EnumRespType.SystemError)
