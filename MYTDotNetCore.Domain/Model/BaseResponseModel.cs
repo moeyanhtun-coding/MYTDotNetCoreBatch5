@@ -23,6 +23,18 @@ public class BaseResponseModel
         };
     }
 
+
+    public static BaseResponseModel Pending(string respCode, string respDesc)
+    {
+        return new BaseResponseModel
+        {
+            RespCode = respCode,
+            RespDesc = respDesc,
+            IsSuccess = false,
+            RespType = EnumRespType.pending
+
+        };
+    }
     public static BaseResponseModel ValidationError(string respCode, string respDesc)
     {
         return new BaseResponseModel
@@ -50,6 +62,7 @@ public enum EnumRespType
 {
     None,
     Success,
+    pending,
     ValidationError,
     SystemError,
 }
