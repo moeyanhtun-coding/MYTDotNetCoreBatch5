@@ -34,7 +34,6 @@ public class BlogServiceController : BaseController
     {
         try
         {
-
             var model = await _blogService.CreateBlogResult(blog);
             return Execute(model);
         }
@@ -43,7 +42,7 @@ public class BlogServiceController : BaseController
             return BadRequest(new { message = ex.Message });
         }
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateBlog(TblBlog reqModel)
     {
