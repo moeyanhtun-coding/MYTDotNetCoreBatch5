@@ -26,4 +26,14 @@ public class BaseController : Controller
         }
         return StatusCode(500, "Internal Response Model Error. Please add BaseResponseModel to your ResponseModel");
     }
+
+    public IActionResult Execute<T>(Result<T> model)
+    {
+
+        if(model.IsValidatationError)
+            return BadRequest(model);
+        if(model.IsSystemError)
+            return StatusCode(500, model);
+        return Ok(model);
+    }
 }
