@@ -27,9 +27,44 @@ public class BlogService
         return item;
     }
 
-    public async Task<Result<ResultBlogResponseModel>> CreateBlog(TblBlog reqModel)
+    public async Task<Result<ResultBlogResponseModel>> CreateBlogResult(TblBlog reqModel)
     {
-        TransferResponseModel model = new  TransferResponseModel();
+        Result<ResultBlogResponseModel> model = new  Result<ResultBlogResponseModel>();
+
+        if (string.IsNullOrEmpty(reqModel.BlogTitle))
+        {
+            model = Result<ResultBlogResponseModel>.ValidationError("BlogTitle is required");
+            goto result;
+        }
+
+        if (string.IsNullOrEmpty(reqModel.BlogAuthor))
+        {
+            model =Result<ResultBlogResponseModel>.ValidationError("Blog Author is required");
+            goto result;
+        }
+
+        if (string.IsNullOrEmpty(reqModel.BlogContent))
+        {
+            model = Result<ResultBlogResponseModel>.ValidationError("Blog Content is required");
+            goto result;
+        }
+        
+        _db.TblBlogs.Add(reqModel);
+        var result = await _db.SaveChangesAsync();
+        ResultBlogResponseModel item = new ResultBlogResponseModel()
+        {
+            Blog = reqModel,
+        };
+        if (result > 0)
+        {
+            model = Result<ResultBlogResponseModel>.Success( item, "Blog Created");
+        }
+        result:
+        return  model;
+    }
+    public async Task<BlogResponseModel> CreateBlog(TblBlog reqModel)
+    {
+        BlogResponseModel model = new  BlogResponseModel();
 
         if (string.IsNullOrEmpty(reqModel.BlogTitle))
         {
@@ -56,7 +91,7 @@ public class BlogService
             model.Response = BaseResponseModel.Success("200", "Blog Created");
         }
         result:
-        return model;
+        return  model;
     }
 
     public int UpdateBlog(int id, TblBlog reqModel)
