@@ -30,7 +30,7 @@ public class BaseController : Controller
     public IActionResult Execute<T>(Result<T> model)
     {
 
-        if(model.IsValidatationError)
+        if(model.IsValidationError)
             return BadRequest(model);
         if(model.IsSystemError)
             return StatusCode(500, model);
