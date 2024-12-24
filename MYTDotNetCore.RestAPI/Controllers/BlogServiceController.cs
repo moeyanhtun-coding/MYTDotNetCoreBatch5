@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MYTDotNetCore.Database.Model;
+using MYTDotNetCore.Domain;
 using MYTDotNetCore.Domain.Feature.Blog;
 using MYTDotNetCore.Domain.Model;
 
@@ -29,32 +30,33 @@ public class BlogServiceController : BaseController
     }
 
     [HttpPost]
-    public IActionResult CreateBlog(TblBlog reqModel)
+    public async Task<IActionResult> CreateBlogResult(TblBlog blog)
     {
-        var result = _blogService.CreateBlog(reqModel);
-        return Ok(result);
+        try
+        {
+
+            var model = await _blogService.CreateBlogResult(blog);
+            return Execute(model);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
     
-    
-    // [HttpPost]
-    // public async Task<IActionResult> CreateBlog(TblBlog reqModel)
-    // {
-    //     try
-    //     {
-    //         var model = await _blogService.CreateBlog(reqModel);
-    //         // if (model.Response.RespType == EnumRespType.ValidationError)
-    //         //     return BadRequest(model);
-    //         // if (model.Response.RespType == EnumRespType.SystemError)
-    //         //     return StatusCode(StatusCodes.Status500InternalServerError, model);
-    //         //
-    //         // return Ok(model);
-    //         return Execute(model);
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         return BadRequest(new { message = e.Message });
-    //     }
-    // }
+    [HttpPost]
+    public async Task<IActionResult> CreateBlog(TblBlog reqModel)
+    {
+        try
+        {
+            var model = await _blogService.CreateBlog(reqModel);
+            return Execute(model);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new { message = e.Message });
+        }
+    }
 
     [HttpPatch("{id}")]
     public IActionResult PatchBlog(int id, TblBlog reqModel)
