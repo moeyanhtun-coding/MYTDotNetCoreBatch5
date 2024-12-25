@@ -7,9 +7,11 @@ namespace MYTDotNetCore.RestAPI;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BaseController : Controller
+public class BaseController : ControllerBase
 {
-    public IActionResult Execute(Object model)
+
+    [HttpPost("execute-object")] 
+    public IActionResult Execute(object model)
     {
         JObject jObj = JObject.Parse(JsonConvert.SerializeObject(model));
         if (jObj.ContainsKey("Response"))
@@ -18,21 +20,22 @@ public class BaseController : Controller
                 JsonConvert.DeserializeObject<BaseResponseModel>(jObj["Response"]!.ToString())!;
             if (baseResponseModel.RespType == EnumRespType.pending)
                 return StatusCode(201, model);
-            if(baseResponseModel.RespType == EnumRespType.ValidationError)
+            if (baseResponseModel.RespType == EnumRespType.ValidationError)
                 return BadRequest(model);
-            if(baseResponseModel.RespType == EnumRespType.SystemError)
+            if (baseResponseModel.RespType == EnumRespType.SystemError)
                 return StatusCode(500, model);
-            return Ok(model); 
+            return Ok(model);
         }
         return StatusCode(500, "Internal Response Model Error. Please add BaseResponseModel to your ResponseModel");
     }
-
-    public IActionResult Execute<T>(Result<T> model)
+    
+    
+    [HttpPost("execute-generic")]
+    public IActionResult Execute<T>( Result<T> model)
     {
-
-        if(model.IsValidationError)
+        if (model.IsValidationError)
             return BadRequest(model);
-        if(model.IsSystemError)
+        if (model.IsSystemError)
             return StatusCode(500, model);
         return Ok(model);
     }
