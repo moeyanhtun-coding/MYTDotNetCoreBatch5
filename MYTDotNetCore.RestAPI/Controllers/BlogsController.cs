@@ -5,7 +5,6 @@ using MYTDotNetCore.Database.Model;
 
 namespace MYTDotNetCore.RestAPI.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class BlogsController : ControllerBase
