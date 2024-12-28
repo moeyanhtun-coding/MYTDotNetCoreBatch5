@@ -1,12 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using MYTDotNetCore.ConsoleApp3;
+
 Console.WriteLine("Hello, World!");
 
-HttpClient http = new HttpClient();
+HttpClientExample httpClientExample = new HttpClientExample();
 
-var response =  await http.GetAsync("https://jsonplaceholder.typicode.com/posts/55");
-if (response.IsSuccessStatusCode)
-{
-    string jsonStr = await response.Content.ReadAsStringAsync();
-    Console.WriteLine(jsonStr);
-}
+await httpClientExample.GetByIdAsync(12);
