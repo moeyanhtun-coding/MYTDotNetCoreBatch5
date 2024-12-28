@@ -6,4 +6,6 @@ Console.WriteLine("Hello, World!");
 
 HttpClientExample httpClientExample = new HttpClientExample();
 
-await httpClientExample.GetByIdAsync(12);
+await httpClientExample.Edit(21);
+await httpClientExample.Patch(22, "honey Update", "","" );
+await httpClientExample.Edit(22);
