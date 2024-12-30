@@ -11,6 +11,9 @@ Console.WriteLine("Hello, World!");
 // await httpClientExample.Edit(22);
 
 
-RestClientExample _client = new RestClientExample();
+// RestClientExample _client = new RestClientExample();
+//
+// await _client.GetBlogs();
 
-await _client.GetBlogs();
+RefitExample _refit = new RefitExample();
+ await _refit.RunAsync();
