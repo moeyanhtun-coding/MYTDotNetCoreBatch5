@@ -11,7 +11,8 @@ namespace MYTDotNetCore.RestAPI.Controllers
     [ApiController]
     public class BlogsAdoDotNetController : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=.; Initial Catalog = MYTDotNetCoreBatch5; User ID=sa; Password=sasa@123; TrustServerCertificate = true";
+        private readonly string _connectionString =
+            "Data Source=.; Initial Catalog = MYTDotNetCoreBatch5; User ID=sa; Password=sasa@123; TrustServerCertificate = true";
 
         [HttpGet]
         public IActionResult GetBlogs()
@@ -34,8 +35,9 @@ namespace MYTDotNetCore.RestAPI.Controllers
                     DeleteFlag = Convert.ToBoolean(reader["DeleteFlag"])
                 });
             }
+
             connection.Close();
-            return Ok(new { data = lst });
+            return Ok(lst);
         }
 
         [HttpGet("{id}")]
@@ -50,7 +52,8 @@ namespace MYTDotNetCore.RestAPI.Controllers
                    ,[BlogAuthor]
                    ,[BlogContent]
                    ,[DeleteFlag]
-                  FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId"; ;
+                  FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
+            ;
             SqlCommand sqlCommand = new SqlCommand(query, connection);
             sqlCommand.Parameters.AddWithValue("@BlogId", id);
             SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -69,6 +72,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
             {
                 return NotFound();
             }
+
             return Ok(new { Blog = item });
         }
 
@@ -163,6 +167,5 @@ namespace MYTDotNetCore.RestAPI.Controllers
 
             return Ok(result > 0 ? "Delete Successful" : "Delete Fail");
         }
-
     }
 }
