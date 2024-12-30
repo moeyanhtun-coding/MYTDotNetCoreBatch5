@@ -1,7 +1,4 @@
-﻿using System.Net;
-using Refit;
-
-namespace MYTDotNetCore.ConsoleApp3;
+﻿namespace MYTDotNetCore.ConsoleApp3;
 
 public class RefitExample
 {
@@ -14,17 +11,25 @@ public class RefitExample
             Console.WriteLine(item.BlogTitle);
         }
 
-        var item2 = await blogApi.GetBlogById(20);
-        try
+        // var item2 = await blogApi.GetBlogById(20);
+        // try
+        // {
+        //     var item3 = await blogApi.GetBlogById(30);
+        // }
+        // catch (ApiException e)
+        // {
+        //     if (e.StatusCode == HttpStatusCode.NotFound)
+        //     {
+        //         Console.WriteLine("Not Found");
+        //     }
+        // }
+
+        var response = await blogApi.AddBlog(new BlogModel
         {
-            var item3 = await blogApi.GetBlogById(30);
-        }
-        catch (ApiException e)
-        {
-            if (e.StatusCode == HttpStatusCode.NotFound)
-            {
-                Console.WriteLine("Not Found");
-            }
-        }
+            BlogTitle = "I Love You",
+            BlogAuthor = "Honey",
+            BlogContent = "Babe",
+        });
+        Console.WriteLine(response.ToString());
     }
 }
