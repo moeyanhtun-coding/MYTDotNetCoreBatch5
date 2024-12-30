@@ -1,6 +1,4 @@
-﻿using Refit;
-
-namespace MYTDotNetCore.ConsoleApp3;
+﻿namespace MYTDotNetCore.ConsoleApp3;
 
 public interface IBlogApi
 {
@@ -9,6 +7,9 @@ public interface IBlogApi
     
     [Get("/api/blogs/{id}")]
     Task<BlogModel> GetBlogById(int id);
+    
+    [Post("/api/blogs")]
+    Task<BlogModel> AddBlog(BlogModel blogModel);
     
 }
 
