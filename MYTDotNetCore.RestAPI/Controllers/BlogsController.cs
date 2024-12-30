@@ -16,7 +16,7 @@ namespace MYTDotNetCore.RestAPI.Controllers
             var lst = _db.TblBlogs.AsNoTracking()
                 .Where(x => x.DeleteFlag != true)
                 .ToList();
-            return Ok(new { data = lst });
+            return Ok( lst );
         }
 
         [HttpPost]
