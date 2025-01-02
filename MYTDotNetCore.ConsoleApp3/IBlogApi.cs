@@ -11,6 +11,11 @@ public interface IBlogApi
     [Post("/api/blogs")]
     Task<BlogModel> AddBlog(BlogModel blogModel);
     
+    [Patch("/api/blogs/{id}")]
+    Task<BlogModel> UpdateBlog(int id, BlogModel blogModel);
+    
+    [Delete("/api/blogs/{id}")]
+    Task<BlogModel> DeleteBlog(int id);
 }
 
 public class BlogModel
