@@ -48,7 +48,9 @@ public class RefitExample
         // });
         // Console.WriteLine(response);
 
-        var blog = await blogApi.GetBlogById(1);
-        Console.WriteLine(blog.BlogAuthor);
+        // var blog = await blogApi.GetBlogById(1);
+        // Console.WriteLine(blog.BlogAuthor);
+
+        var response = await blogApi.DeleteBlog(1);
     }
 }
