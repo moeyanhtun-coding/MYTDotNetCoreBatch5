@@ -11,7 +11,12 @@ namespace MYTDotNetCore.RestAPI.Controllers
     [ApiController]
     public class BlogServiceController : BaseController
     {
-        private readonly BlogService _blogService = new BlogService();
+        private readonly BlogService _blogService;
+
+        public BlogServiceController(BlogService blogService)
+        {
+            _blogService = blogService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
