@@ -9,7 +9,13 @@ namespace MYTDotNetCore.RestAPI.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        private readonly AppDbContext _db;
+
+        public BlogsController(AppDbContext db)
+        {
+            _db = db;
+        }
+
         [HttpGet]
         public IActionResult GetBlogs()
         {
