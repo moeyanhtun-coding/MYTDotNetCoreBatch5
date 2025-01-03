@@ -9,10 +9,15 @@ using MYTDotNetCore.Domain.Model;
 
 namespace MYTDotNetCore.Domain.Feature.Blog;
 
-
-public class BlogService
+public class BlogService : IBlogService
 {
-    private readonly AppDbContext _db = new AppDbContext();
+    private readonly AppDbContext _db;
+
+    public BlogService(AppDbContext db)
+    {
+        _db = db;
+    }
+
     public List<TblBlog> GetBlogs()
     {
         var lst = _db.TblBlogs.ToList();
