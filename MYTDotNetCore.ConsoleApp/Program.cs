@@ -178,5 +178,8 @@ Console.WriteLine("Hello, World!");
 
 var services = new ServiceCollection()
     .AddScoped<AdoDotNetExample2>()
+    .BuildServiceProvider();
+var adoDotNetExample2 = services.GetRequiredService<AdoDotNetExample2>();
+adoDotNetExample2.Read();
 
 
