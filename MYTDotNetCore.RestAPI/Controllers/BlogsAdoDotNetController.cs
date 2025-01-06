@@ -11,8 +11,12 @@ namespace MYTDotNetCore.RestAPI.Controllers
     [ApiController]
     public class BlogsAdoDotNetController : ControllerBase
     {
-        private readonly string _connectionString =
-            "Data Source=.; Initial Catalog = MYTDotNetCoreBatch5; User ID=sa; Password=sasa@123; TrustServerCertificate = true";
+        private readonly string _connectionString;
+
+        public BlogsAdoDotNetController(IConfiguration configuration )
+        {
+            _connectionString = configuration.GetConnectionString("DbConnection")!;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
