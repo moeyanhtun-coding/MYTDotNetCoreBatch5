@@ -3,9 +3,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.Extensions.DependencyInjection;
 using MYTDotNetCore.ConsoleApp;
 
-//Console.WriteLine("Hello, World!");
+Console.WriteLine("Hello, World!");
 //string connectionString = "Data Source=.;Initial Catalog=MYTDotNetCoreBatch5;User ID=sa;" +
 //    "Password=sasa@123;";
 //SqlConnection connection = new SqlConnection(connectionString);
@@ -151,12 +152,12 @@ using MYTDotNetCore.ConsoleApp;
 //dapperExample.Update(8, "Update new update", "Update new one ", "Update new one");
 //dapperExample.Delete(8);
 //dapperExample.Edit(8E);
-AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
-DapperExample2 dapperExample2 = new DapperExample2();
-dapperExample2.Read();
-dapperExample2.Edit(13);
-dapperExample2.Update(13, "Update", "Update", "Update");
-dapperExample2.Delete(13);
+// AdoDotNetExample2 eFCoreExample2 = new AdoDotNetExample2();
+// DapperExample2 dapperExample2 = new DapperExample2();
+// dapperExample2.Read();
+// dapperExample2.Edit(13);
+// dapperExample2.Update(13, "Update", "Update", "Update");
+// dapperExample2.Delete(13);
 
 //eFCoreExample2.Create();
 //eFCoreExample2.Read();
@@ -169,6 +170,13 @@ dapperExample2.Delete(13);
 //eFCoreExample.Edit(10);
 //eFCoreExample.Delelte(10);
 
+// var service = new ServiceCollection()
+//     .AddScoped<AdoDotNetExample>()
+//     .BuildServiceProvider();
+// var adoDotNetExample = service.GetRequiredService<AdoDotNetExample>();
+// adoDotNetExample.Read();
 
+var services = new ServiceCollection()
+    .AddScoped<AdoDotNetExample2>()
 
 
