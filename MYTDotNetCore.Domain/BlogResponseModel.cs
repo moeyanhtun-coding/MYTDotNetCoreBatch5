@@ -1,5 +1,4 @@
-﻿using MYTDotNetCore.Database.Model;
-using MYTDotNetCore.Domain.Model;
+﻿using MYTDotNetCore.Domain.Model;
 
 namespace MYTDotNetCore.Domain;
 
