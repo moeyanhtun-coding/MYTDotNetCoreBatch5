@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MYTDotNetCore.Database.Model;
 using MYTDotNetCore.Domain.Model;
 
 namespace MYTDotNetCore.Domain.Feature.Blog;
