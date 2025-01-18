@@ -9,7 +9,7 @@ public class HttpClientExample
     private readonly HttpClient _httpClient;
     private readonly string _endPoint = "https://localhost:7274/api/Blogs";
 
- 
+  
     public async Task ReadAsync()
     {
         var response = await _httpClient.GetAsync(_endPoint);
