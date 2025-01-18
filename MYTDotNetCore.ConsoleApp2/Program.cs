@@ -27,11 +27,6 @@ public static class Extensions
         var jsonStr = JsonConvert.SerializeObject(obj , format ? Formatting.Indented : Formatting.None);
         return jsonStr;
     }
-
-    public static object ToObject(this string str)
-    {
-        var obj = JsonConvert.DeserializeObject<object>(str)!;
-        return obj;
-    }
+    
 
 }

@@ -2,6 +2,7 @@
 
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.Extensions.DependencyInjection;
 using MYTDotNetCore.ConsoleApp;
@@ -176,10 +177,26 @@ Console.WriteLine("Hello, World!");
 // var adoDotNetExample = service.GetRequiredService<AdoDotNetExample>();
 // adoDotNetExample.Read();
 
-var services = new ServiceCollection()
-    .AddScoped<AdoDotNetExample2>()
-    .BuildServiceProvider();
-var adoDotNetExample2 = services.GetRequiredService<AdoDotNetExample2>();
-adoDotNetExample2.Read();
+// var services = new ServiceCollection()
+//     .AddScoped<AdoDotNetExample2>()
+//     .BuildServiceProvider();
+// var adoDotNetExample2 = services.GetRequiredService<AdoDotNetExample2>();
+// adoDotNetExample2.Read();
 
+var service = new ServiceCollection()
+    .AddScoped<DapperExample2>()
+    .AddScoped<EFCoreExample>()
+    .BuildServiceProvider();
+var dapperExample2 = service.GetRequiredService<DapperExample2>();
+var efCoreExample = service.GetRequiredService<EFCoreExample>();
+// efCoreExample.Read();
+// efCoreExample.Edit(27);
+// Console.ReadLine();
+
+// var service2 = new ServiceCollection();
+// service2.AddScoped<EFCoreExample>();
+// service2.BuildServiceProvider();
+//
+// var efCoreExample = service.GetRequiredService<EFCoreExample>();
+// efCoreExample.Read();
 
